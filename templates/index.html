@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Study Hub</title>
+    <link rel="stylesheet" href="./static/styles.css">
+    {{bootstrap.load_css()}}
+</head>
+<body>
+
+<div class="top-navbar">
+  <a class="btn btn-success" href="{{url_for('add_cafe')}}">Add a place</a>
+  <a class="btn btn-info" href="https://pamir-portfolio.onrender.com" target="_blank">About</a>
+</div>
+
+
+<div class="header">
+  <h1>
+    Find places for study and remote-work.
+  </h1>
+
+
+</div>
+
+<div class="cafes " >
+{% for data in data%}
+    <div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="{{data.img_url}}" alt="Card image cap" width="80px;" height="160px;">
+  <div class="card-body">
+    <h5 class="card-title">{{data.name}}</h5>
+      <p class="card-text">
+        <span>{{data.location}}</span>
+          <br>
+          <br>
+        <span>Seats: {{data.seats}}</span>
+        <br>
+        <span>Coffee Price: {{data.coffee_price}}</span><br>
+          {% if data.has_wifi %}
+            <span><img src="{{url_for('static',filename='images/wi-fi-icon.png')}}" alt="" width="30px;"></span>
+          {% endif%}
+
+          {% if data.has_sockets%}
+            <span><img src="{{url_for('static',filename='images/electric-plug-socket-pin-icon.png')}}" alt="" width="30px;"></span>
+          {% endif%}
+
+          {% if data.has_toilet %}
+            <span><img src="{{url_for('static',filename='images/toilet-restroom-icon.png')}}" alt="" width="30px;"></span>
+          {% endif%}
+
+          {% if data.can_take_calls %}
+            <span><img src="{{url_for('static',filename='images/helpdesk-icon.png')}}" alt="" width="30px;"></span>
+          {% endif%}
+
+
+
+      </p>
+    <a href="{{data.map_url}}" class="btn btn-primary">Visit</a>
+    <a href="{{url_for('delete_cafe', cafe_id = data.id)}}" class="btn btn-danger">Delete</a>
+  </div>
+</div>
+
+
+{% endfor%}
+
+ </div>
+
+<div class="footer">
+  <p> &copy; {{year}} <span><a href="https://pamir-portfolio.onrender.com" target="_blank">Pshinwari</a></span>. All rights reserved. </p>
+
+</div>
+</body>
+</html>

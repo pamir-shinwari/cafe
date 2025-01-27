@@ -1,0 +1,47 @@
+.header{
+display:grid;
+justify-content:center;
+padding: 40px 0 80px 0;
+
+}
+
+.add{
+display:grid;
+justify-items:center;
+}
+.add-cafe-form{
+width: 50%;
+
+}
+
+.cafes{
+display:grid;
+grid-template-columns: 1fr 1fr 1fr;
+justify-items: center;
+}
+
+
+.card{
+margin: 20px 0 20px 0;
+}
+
+.top-navbar{
+padding-left: 20px;
+background-color:black;
+padding: 20px 20px 20px 20px;
+position:sticky;
+top:0;
+Z-index:1;
+display:flex;
+justify-content:space-between
+}
+
+
+
+.footer{
+background-color: black;
+color: white;
+display:flex;
+justify-content:center;
+
+}

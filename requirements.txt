@@ -1,0 +1,5 @@
+sqlalchemy~=2.0.37
+flask-sqlalchemy
+Flask~=3.1.0
+Bootstrap_Flask==2.3.3
+Flask_WTF==1.2.1

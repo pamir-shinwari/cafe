@@ -1,0 +1,23 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Study Hub</title>
+    {% from 'bootstrap/form.html' import render_form %}
+    {{ bootstrap.load_css()}}
+    <link rel="stylesheet" href="./static/styles.css">
+</head>
+<body>
+
+<div class="add">
+<div class=" add-cafe-form">
+    <h1>Add Cafes</h1>
+    {{render_form(form)}}
+</div>
+</div>
+
+
+</body>
+</html>
