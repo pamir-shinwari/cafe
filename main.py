@@ -8,6 +8,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, URLField, BooleanField, SubmitField
 from wtforms.validators import DataRequired
 from datetime import datetime
+import os
 
 app = Flask(__name__)
 bootstrap = Bootstrap5(app)
@@ -19,7 +20,7 @@ class Base(DeclarativeBase):
     pass
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///cafes.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DB_URI', 'sqlite:///cafes.db')
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
 
@@ -76,4 +77,4 @@ def delete_cafe(cafe_id):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5002)
+    app.run(debug=False)
