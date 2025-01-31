@@ -1,11 +1,11 @@
 from flask import Flask, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Integer, Text, String
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
+
+from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.ext.automap import automap_base
 from flask_bootstrap import Bootstrap5
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, URLField, BooleanField, SubmitField
+from wtforms import StringField, URLField, BooleanField, SubmitField
 from wtforms.validators import DataRequired
 from datetime import datetime
 import os
@@ -27,10 +27,12 @@ db.init_app(app)
 with app.app_context():
     Base = automap_base()
     Base.prepare(autoload_with=db.engine)
-    cafe = Base.classes.cafe
 
 
-class Add_Cafe_Form(FlaskForm):
+cafe = Base.classes.cafe
+
+
+class AddCafeForm(FlaskForm):
     name = StringField(validators=[DataRequired()])
     map_url = URLField(validators=[DataRequired()])
     img_url = URLField(validators=[DataRequired()])
@@ -56,7 +58,7 @@ def home():
 
 @app.route("/add_cafe", methods=['GET', 'POST'])
 def add_cafe():
-    form = Add_Cafe_Form()
+    form = AddCafeForm()
     if form.validate_on_submit():
         new_cafe = cafe(name=form.name.data, map_url=form.map_url.data, img_url=form.img_url.data,
                         location=form.location.data, coffee_price=form.coffee_price.data, seats=form.seats.data,
