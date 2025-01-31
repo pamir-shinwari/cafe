@@ -13,7 +13,7 @@ import os
 app = Flask(__name__)
 bootstrap = Bootstrap5(app)
 
-app.config["SECRET_KEY"] = "123"
+app.config["SECRET_KEY"] = os.environ.get('FLASK_KEY')
 
 
 class Base(DeclarativeBase):
@@ -28,8 +28,6 @@ with app.app_context():
     Base = automap_base()
     Base.prepare(autoload_with=db.engine)
     cafe = Base.classes.cafe
-
-
 
 
 class AddCafeForm(FlaskForm):
@@ -80,4 +78,3 @@ def delete_cafe(cafe_id):
 
 if __name__ == "__main__":
     app.run(debug=False)
-
