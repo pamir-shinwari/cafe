@@ -27,9 +27,9 @@ db.init_app(app)
 with app.app_context():
     Base = automap_base()
     Base.prepare(autoload_with=db.engine)
+    cafe = Base.classes.cafe
 
 
-cafe = Base.classes.cafe
 
 
 class AddCafeForm(FlaskForm):
